@@ -8,15 +8,15 @@ public class ReadDataFromFile {
     public String readFromFile(String fileName) {
         StringBuilder data = new StringBuilder();
 
-        try (BufferedReader rb = new BufferedReader(new FileReader(fileName))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line;
-            while ((line = rb.readLine()) != null) {
-                data.append(line);
-                data.append(System.lineSeparator());
+            while ((line = bufferedReader.readLine()) != null) {
+                data.append(line).append(" ");
             }
         } catch (IOException e) {
             throw new RuntimeException(String.format("Error read data from file %s", fileName), e);
         }
+
         return data.toString().strip();
     }
 }
